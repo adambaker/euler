@@ -1,10 +1,14 @@
 module Euler (
   factors,
   divides,
+  primes,
 ) where
 
 import Data.List (find)
 import Test.QuickCheck
+
+divides :: Integral a => a -> a -> Bool
+d `divides`  k = k `mod` d == 0
 
 factors :: Integral i => i -> [i]
 factors n = let
@@ -17,7 +21,9 @@ factors n = let
   in factors' 2 n
 
 prop_product_of_factors :: Int -> Property
-prop_product_of_factors i = (i > 1) ==> foldl (*) 1 (factors i) == i
+prop_product_of_factors i = (i > 1) ==> foldr (*) 1 (factors i) == i
 
-divides :: Integral a => a -> a -> Bool
-d `divides`  k = k `mod` d == 0
+isPrime :: Integral i => i -> Bool
+isPrime i = head (factors i) == i
+
+primes = 2 : (filter isPrime [3, 5 ..])
