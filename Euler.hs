@@ -1,10 +1,14 @@
 module Euler (
+  asInt,
   factors,
   divides,
   primes,
 ) where
 
 import Data.List (find)
+
+asInt :: Char -> Int
+asInt = read . (:[])
 
 divides :: Integral a => a -> a -> Bool
 d `divides`  k = k `mod` d == 0
