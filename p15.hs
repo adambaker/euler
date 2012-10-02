@@ -1,7 +1,7 @@
 
 oldPaths n = numPaths' (0, 0)
   where
-    numPaths' pt@(x,y) = if x == n || y == n then 1 else numPaths' (x+1, y) + numPaths' (x, y+1)
+    numPaths' (x,y) = if x == n || y == n then 1 else numPaths' (x+1, y) + numPaths' (x, y+1)
 
 pathsList = 1:2:pathsList' 2
   where
